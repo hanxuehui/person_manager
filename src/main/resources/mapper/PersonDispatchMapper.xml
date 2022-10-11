@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ricky.manager.mapper.PersonDispatchMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ricky.manager.entity.PersonDispatch">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="origin_department" property="originDepartment" />
+        <result column="now_department" property="nowDepartment" />
+        <result column="dispatch_start_time" property="dispatchStartTime" />
+        <result column="dispatch_end_time" property="dispatchEndTime" />
+        <result column="position" property="position" />
+        <result column="remark" property="remark" />
+        <result column="crt_time" property="crtTime" />
+        <result column="crt_person" property="crtPerson" />
+        <result column="upd_time" property="updTime" />
+        <result column="upd_person" property="updPerson" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, origin_department, now_department, dispatch_start_time, dispatch_end_time, position, remark,
+        crt_time, crt_person, upd_time, upd_person, is_delete
+    </sql>
+
+    <select id="queryList" resultMap="BaseResultMap" parameterType="com.ricky.manager.vo.dispatch.PersonDispatchQueryCond">
+        select
+            id, name, code, origin_department, now_department, dispatch_start_time, dispatch_end_time, position, remark,
+            crt_time, crt_person, upd_time, upd_person, is_delete
+        from person_dispatch
+        <where>
+            is_delete = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name like CONCAT(CONCAT('%', #{name}, '%'))
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="originDepartment != null and originDepartment != ''">
+                and origin_department = #{originDepartment}
+            </if>
+            <if test="nowDepartment != null and nowDepartment != ''">
+                and now_department = #{nowDepartment}
+            </if>
+            <if test="dispatchStartTime != null">
+                and dispatch_start_time = #{dispatchStartTime}
+            </if>
+            <if test="dispatchEndTime != null">
+                and dispatch_end_time = #{dispatchEndTime}
+            </if>
+            <if test="position != null and position != ''">
+                and position = #{position}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="startCrtTime != null and startCrtTime != ''">
+                and crt_time &gt;= #{startCrtTime}
+            </if>
+            <if test="endCrtTime != null and endCrtTime != ''">
+                and crt_time &lt;= #{endCrtTime}
+            </if>
+            <if test="crtPerson != null and crtPerson != ''">
+                and crt_person = #{crtPerson}
+            </if>
+            <if test="startUpdTime != null and startUpdTime != ''">
+                and upd_time &gt;= #{startUpdTime}
+            </if>
+            <if test="endUpdTime != null and endUpdTime != ''">
+                and upd_time &lt;= #{endUpdTime}
+            </if>
+            <if test="updPerson != null and updPerson != ''">
+                and upd_person = #{updPerson}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ricky.manager.mapper.LaborSubcontractMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ricky.manager.entity.LaborSubcontract">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="director" property="director" />
+        <result column="contract_person" property="contractPerson" />
+        <result column="main_profession" property="mainProfession" />
+        <result column="scale" property="scale" />
+        <result column="live_address" property="liveAddress" />
+        <result column="more_live_address" property="moreLiveAddress" />
+        <result column="recommend_person" property="recommendPerson" />
+        <result column="recommend_reason" property="recommendReason" />
+        <result column="manager_evaluation" property="managerEvaluation" />
+        <result column="remark" property="remark" />
+        <result column="certificate" property="certificate" />
+        <result column="crt_time" property="crtTime" />
+        <result column="crt_person" property="crtPerson" />
+        <result column="upd_time" property="updTime" />
+        <result column="upd_person" property="updPerson" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, director, contract_person, main_profession, scale, live_address, more_live_address, recommend_person, recommend_reason, manager_evaluation, remark, certificate, crt_time, crt_person, upd_time, upd_person, is_delete
+    </sql>
+
+    <select id="queryList" resultMap="BaseResultMap" parameterType="com.ricky.manager.vo.labor.LaborSubcontractQueryCond">
+        select
+            id, director, contract_person, main_profession, scale, live_address, more_live_address, recommend_person,
+            recommend_reason, manager_evaluation, remark, certificate, is_delete, code, crt_time, crt_person, upd_time, upd_person
+        from labor_subcontract
+        <where>
+            is_delete = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="director != null and director != ''">
+                and director like CONCAT(CONCAT('%', #{director}, '%'))
+            </if>
+            <if test="contractPerson != null and contractPerson != ''">
+                and contract_person like CONCAT(CONCAT('%', #{contractPerson}, '%'))
+            </if>
+            <if test="mainProfession != null and mainProfession != ''">
+                and main_profession like CONCAT(CONCAT('%', #{mainProfession}, '%'))
+            </if>
+            <if test="scale != null and scale != ''">
+                and scale = #{scale}
+            </if>
+            <if test="liveAddress != null and liveAddress != ''">
+                and live_address like CONCAT(CONCAT('%', #{liveAddress}, '%'))
+            </if>
+            <if test="moreLiveAddress != null and moreLiveAddress != ''">
+                and more_live_address like CONCAT(CONCAT('%', #{moreLiveAddress}, '%'))
+            </if>
+            <if test="recommendPerson != null and recommendPerson != ''">
+                and recommend_person like CONCAT(CONCAT('%', #{recommendPerson}, '%'))
+            </if>
+            <if test="recommendReason != null and recommendReason != ''">
+                and recommend_reason like CONCAT(CONCAT('%', #{recommendReason}, '%'))
+            </if>
+            <if test="managerEvaluation != null and managerEvaluation != ''">
+                and manager_evaluation like CONCAT(CONCAT('%', #{managerEvaluation}, '%'))
+            </if>
+            <if test="certificate != null and certificate != ''">
+                and certificate = #{certificate}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="startCrtTime != null and startCrtTime != ''">
+                and crt_time &gt;= #{startCrtTime}
+            </if>
+            <if test="endCrtTime != null and endCrtTime != ''">
+                and crt_time &lt;= #{endCrtTime}
+            </if>
+            <if test="crtPerson != null and crtPerson != ''">
+                and crt_person = #{crtPerson}
+            </if>
+            <if test="startUpdTime != null and startUpdTime != ''">
+                and upd_time &gt;= #{startUpdTime}
+            </if>
+            <if test="endUpdTime != null and endUpdTime != ''">
+                and upd_time &lt;= #{endUpdTime}
+            </if>
+            <if test="updPerson != null and updPerson != ''">
+                and upd_person = #{updPerson}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+</mapper>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ricky.manager.mapper.ProfessionSubcontractMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ricky.manager.entity.ProfessionSubcontract">
+        <id column="id" property="id" />
+        <result column="unit_name" property="unitName" />
+        <result column="code" property="code" />
+        <result column="certificate_type" property="certificateType" />
+        <result column="certificate_level" property="certificateLevel" />
+        <result column="main_profession" property="mainProfession" />
+        <result column="scale" property="scale" />
+        <result column="director" property="director" />
+        <result column="contact_type" property="contactType" />
+        <result column="home_address" property="homeAddress" />
+        <result column="recommend_person" property="recommendPerson" />
+        <result column="recommend_reason" property="recommendReason" />
+        <result column="manager_evaluation" property="managerEvaluation" />
+        <result column="remark" property="remark" />
+        <result column="certificate" property="certificate" />
+        <result column="crt_time" property="crtTime" />
+        <result column="crt_person" property="crtPerson" />
+        <result column="upd_time" property="updTime" />
+        <result column="upd_person" property="updPerson" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, unit_name, certificate_type, certificate_level, main_profession, scale, director, contact_type, home_address,
+        recommend_person, recommend_reason, manager_evaluation, remark, certificate, create_time, create_person, update_time, update_person, is_delete
+    </sql>
+
+    <select id="queryList" resultMap="BaseResultMap" parameterType="com.ricky.manager.vo.profession.ProfessionSubcontractQueryCond">
+        select
+            id, unit_name, certificate_type, certificate_level, main_profession, scale, director, contact_type, home_address,
+            recommend_person, recommend_reason, manager_evaluation, remark, certificate, is_delete, code, crt_time, crt_person, upd_time, upd_person
+        from profession_subcontract
+        <where>
+            is_delete = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="unitName != null and unitName != ''">
+                and unit_name like CONCAT(CONCAT('%', #{unitName}, '%'))
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="certificateType != null and certificateType != ''">
+                and certificate_type = #{certificateType}
+            </if>
+            <if test="certificateLevel != null and certificateLevel != ''">
+                and certificate_level = #{certificateLevel}
+            </if>
+            <if test="mainProfession != null and mainProfession != ''">
+                and main_profession = #{mainProfession}
+            </if>
+            <if test="scale != null and scale != ''">
+                and scale = #{scale}
+            </if>
+            <if test="director != null and director != ''">
+                and director = #{director}
+            </if>
+            <if test="contactType != null and contactType != ''">
+                and contact_type = #{contactType}
+            </if>
+            <if test="homeAddress != null and homeAddress != ''">
+                and home_address = #{homeAddress}
+            </if>
+            <if test="recommendPerson != null and recommendPerson != ''">
+                and recommend_person = #{recommendPerson}
+            </if>
+            <if test="recommendReason != null and recommendReason != ''">
+                and recommend_reason = #{recommendReason}
+            </if>
+            <if test="managerEvaluation != null and managerEvaluation != ''">
+                and manager_evaluation = #{managerEvaluation}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="certificate != null and certificate != ''">
+                and certificate = #{certificate}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="startCrtTime != null and startCrtTime != ''">
+                and crt_time &gt;= #{startCrtTime}
+            </if>
+            <if test="endCrtTime != null and endCrtTime != ''">
+                and crt_time &lt;= #{endCrtTime}
+            </if>
+            <if test="crtPerson != null and crtPerson != ''">
+                and crt_person = #{crtPerson}
+            </if>
+            <if test="startUpdTime != null and startUpdTime != ''">
+                and upd_time &gt;= #{startUpdTime}
+            </if>
+            <if test="endUpdTime != null and endUpdTime != ''">
+                and upd_time &lt;= #{endUpdTime}
+            </if>
+            <if test="updPerson != null and updPerson != ''">
+                and upd_person = #{updPerson}
+            </if>
+        </where>
+    </select>
+</mapper>

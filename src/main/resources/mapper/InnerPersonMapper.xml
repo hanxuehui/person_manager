@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ricky.manager.mapper.InnerPersonMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ricky.manager.entity.InnerPerson">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="sex" property="sex" />
+        <result column="age" property="age" />
+        <result column="id_card" property="idCard" />
+        <result column="join_time" property="joinTime" />
+        <result column="contact_type" property="contactType" />
+        <result column="home_address" property="homeAddress" />
+        <result column="major" property="major" />
+        <result column="major_year" property="majorYear" />
+        <result column="position" property="position" />
+        <result column="political_outlook" property="politicalOutlook" />
+        <result column="initial_education" property="initialEducation" />
+        <result column="initial_major" property="initialMajor" />
+        <result column="initial_school" property="initialSchool" />
+        <result column="initial_graduation_time" property="initialGraduationTime" />
+        <result column="special_operation_certificate" property="specialOperationCertificate" />
+        <result column="safe_person_certificate" property="safePersonCertificate" />
+        <result column="qualification_certificate" property="qualificationCertificate" />
+        <result column="employ_form" property="employForm" />
+        <result column="recommend_position" property="recommendPosition" />
+        <result column="business_expertise" property="businessExpertise" />
+        <result column="recommend_unit" property="recommendUnit" />
+        <result column="recommend_department" property="recommendDepartment" />
+        <result column="computer_skill" property="computerSkill" />
+        <result column="certificate" property="certificate" />
+        <result column="resume" property="resume" />
+        <result column="remark" property="remark" />
+        <result column="crt_time" property="crtTime" />
+        <result column="crt_person" property="crtPerson" />
+        <result column="upd_time" property="updTime" />
+        <result column="upd_person" property="updPerson" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, code, sex, age, id_card, join_time, contact_type, home_address, major, major_year, position,
+        political_outlook, initial_education, initial_major, initial_school, initial_graduation_time,
+        special_operation_certificate, safe_person_certificate, qualification_certificate, employ_form, recommend_position,
+        business_expertise, recommend_unit, recommend_department, computer_skill, certificate, resume, remark,
+        crt_time, crt_person, upd_time, upd_person, is_delete
+    </sql>
+
+    <select id="queryList" resultMap="BaseResultMap" parameterType="com.ricky.manager.vo.inner.InnerPersonQueryCond">
+        select
+            id, name, code, sex, age,  id_card, join_time, contact_type, home_address, major, major_year, position,
+            political_outlook, initial_education, initial_major, initial_school, initial_graduation_time,
+            special_operation_certificate, safe_person_certificate, qualification_certificate, employ_form, recommend_position,
+            business_expertise, recommend_unit, recommend_department, computer_skill, certificate, resume, remark,
+            crt_time, crt_person, upd_time, upd_person, is_delete
+        from inner_person
+        <where>
+            is_delete = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name like CONCAT(CONCAT('%', #{name}, '%'))
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="joinTime != null">
+                and join_time = #{joinTime}
+            </if>
+            <if test="contactType != null and contactType != ''">
+                and contact_type = #{contactType}
+            </if>
+            <if test="homeAddress != null and homeAddress != ''">
+                and home_address = #{homeAddress}
+            </if>
+            <if test="major != null and major != ''">
+                and major = #{major}
+            </if>
+            <if test="majorYear != null and majorYear != ''">
+                and major_year = #{majorYear}
+            </if>
+            <if test="position != null and position != ''">
+                and position = #{position}
+            </if>
+            <if test="politicalOutlook != null and politicalOutlook != ''">
+                and political_outlook = #{politicalOutlook}
+            </if>
+            <if test="initialEducation != null and initialEducation != ''">
+                and initial_education = #{initialEducation}
+            </if>
+            <if test="initialMajor != null and initialMajor != ''">
+                and initial_major = #{initialMajor}
+            </if>
+            <if test="initialSchool != null and initialSchool != ''">
+                and initial_school = #{initialSchool}
+            </if>
+            <if test="initialGraduationTime != null">
+                and initial_graduation_time = #{initialGraduationTime}
+            </if>
+            <if test="specialOperationCertificate != null and specialOperationCertificate != ''">
+                and special_operation_certificate = #{specialOperationCertificate}
+            </if>
+            <if test="safePersonCertificate != null and safePersonCertificate != ''">
+                and safe_person_certificate = #{safePersonCertificate}
+            </if>
+            <if test="qualificationCertificate != null and qualificationCertificate != ''">
+                and qualification_certificate = #{qualificationCertificate}
+            </if>
+            <if test="employForm != null and employForm != ''">
+                and employ_form = #{employForm}
+            </if>
+            <if test="recommendPosition != null and recommendPosition != ''">
+                and recommend_position = #{recommendPosition}
+            </if>
+            <if test="businessExpertise != null and businessExpertise != ''">
+                and business_expertise = #{businessExpertise}
+            </if>
+            <if test="recommendUnit != null and recommendUnit != ''">
+                and recommend_unit = #{recommendUnit}
+            </if>
+            <if test="recommendDepartment != null and recommendDepartment != ''">
+                and recommend_department = #{recommendDepartment}
+            </if>
+            <if test="computerSkill != null and computerSkill != ''">
+                and computer_skill = #{computerSkill}
+            </if>
+            <if test="certificate != null and certificate != ''">
+                and certificate = #{certificate}
+            </if>
+            <if test="resume != null and resume != ''">
+                and resume = #{resume}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="startCrtTime != null and startCrtTime != ''">
+                and crt_time &gt;= #{startCrtTime}
+            </if>
+            <if test="endCrtTime != null and endCrtTime != ''">
+                and crt_time &lt;= #{endCrtTime}
+            </if>
+            <if test="crtPerson != null and crtPerson != ''">
+                and crt_person = #{crtPerson}
+            </if>
+            <if test="startUpdTime != null and startUpdTime != ''">
+                and upd_time &gt;= #{startUpdTime}
+            </if>
+            <if test="endUpdTime != null and endUpdTime != ''">
+                and upd_time &lt;= #{endUpdTime}
+            </if>
+            <if test="updPerson != null and updPerson != ''">
+                and upd_person = #{updPerson}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+</mapper>

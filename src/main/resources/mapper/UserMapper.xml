@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ricky.manager.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ricky.manager.entity.User">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="user_name" property="userName" />
+        <result column="user_state" property="userState" />
+        <result column="role" property="role" />
+        <result column="crt_time" property="crtTime" />
+        <result column="crt_person" property="crtPerson" />
+        <result column="upd_time" property="updTime" />
+        <result column="upd_person" property="updPerson" />
+        <result column="cancel_time" property="cancelTime" />
+        <result column="last_visit_ip" property="lastVisitIp" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, password, user_name, user_state, role, crt_time, crt_person, upd_time, upd_person, cancel_time, last_visit_ip
+    </sql>
+
+</mapper>

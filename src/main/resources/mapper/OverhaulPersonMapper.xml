@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ricky.manager.mapper.OverhaulPersonMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ricky.manager.entity.OverhaulPerson">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="sex" property="sex" />
+        <result column="age" property="age" />
+        <result column="idcard" property="idCard" />
+        <result column="join_time" property="joinTime" />
+        <result column="contact_type" property="contactType" />
+        <result column="home_address" property="homeAddress" />
+        <result column="major" property="major" />
+        <result column="major_year" property="majorYear" />
+        <result column="position" property="position" />
+        <result column="political_outlook" property="politicalOutlook" />
+        <result column="initial_education" property="initialEducation" />
+        <result column="initial_major" property="initialMajor" />
+        <result column="initial_school" property="initialSchool" />
+        <result column="initial_graduation_time" property="initialGraduationTime" />
+        <result column="special_operation_certificate" property="specialOperationCertificate" />
+        <result column="safe_person_certificate" property="safePersonCertificate" />
+        <result column="qualification_certificate" property="qualificationCertificate" />
+        <result column="belong_unit" property="belongUnit" />
+        <result column="contract_limit" property="contractLimit" />
+        <result column="business_expertise" property="businessExpertise" />
+        <result column="recommend_person" property="recommendPerson" />
+        <result column="recommend_reason" property="recommendReason" />
+        <result column="manager_evaluation" property="managerEvaluation" />
+        <result column="remark" property="remark" />
+        <result column="crt_time" property="crtTime" />
+        <result column="crt_person" property="crtPerson" />
+        <result column="upd_time" property="updTime" />
+        <result column="upd_person" property="updPerson" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, code, sex, age, idcard, join_time, contact_type, home_address, major, major_year, position, political_outlook,
+        initial_education, initial_major, initial_school, initial_graduation_time, special_operation_certificate,
+        safe_person_certificate, qualification_certificate, belong_unit, contract_limit, business_expertise, recommend_person,
+        recommend_reason, manager_evaluation, remark, create_time, create_person, update_time, update_person, is_delete
+    </sql>
+    <select id="queryList" resultMap="BaseResultMap" parameterType="com.ricky.manager.vo.overhaul.OverhaulPersonQueryCond">
+        select
+            id, name, code, sex, age, join_time, contact_type, home_address, major, major_year, position, political_outlook, initial_education,
+            initial_major, initial_school, initial_graduation_time, special_operation_certificate, safe_person_certificate,
+            qualification_certificate, belong_unit, contract_limit, business_expertise, recommend_person, recommend_reason,
+            manager_evaluation, remark, is_delete, code, id_card, crt_time, crt_person, upd_time, upd_person
+        from overhaul_person
+        <where>
+            is_delete = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name like CONCAT(CONCAT('%', #{name}, '%'))
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="joinTime != null">
+                and join_time = #{joinTime}
+            </if>
+            <if test="contactType != null and contactType != ''">
+                and contact_type = #{contactType}
+            </if>
+            <if test="homeAddress != null and homeAddress != ''">
+                and home_address = #{homeAddress}
+            </if>
+            <if test="major != null and major != ''">
+                and major = #{major}
+            </if>
+            <if test="majorYear != null and majorYear != ''">
+                and major_year = #{majorYear}
+            </if>
+            <if test="position != null and position != ''">
+                and position = #{position}
+            </if>
+            <if test="politicalOutlook != null and politicalOutlook != ''">
+                and political_outlook = #{politicalOutlook}
+            </if>
+            <if test="initialEducation != null and initialEducation != ''">
+                and initial_education = #{initialEducation}
+            </if>
+            <if test="initialMajor != null and initialMajor != ''">
+                and initial_major = #{initialMajor}
+            </if>
+            <if test="initialSchool != null and initialSchool != ''">
+                and initial_school = #{initialSchool}
+            </if>
+            <if test="initialGraduationTime != null">
+                and initial_graduation_time = #{initialGraduationTime}
+            </if>
+            <if test="specialOperationCertificate != null and specialOperationCertificate != ''">
+                and special_operation_certificate = #{specialOperationCertificate}
+            </if>
+            <if test="safePersonCertificate != null and safePersonCertificate != ''">
+                and safe_person_certificate = #{safePersonCertificate}
+            </if>
+            <if test="qualificationCertificate != null and qualificationCertificate != ''">
+                and qualification_certificate = #{qualificationCertificate}
+            </if>
+            <if test="belongUnit != null and belongUnit != ''">
+                and belong_unit = #{belongUnit}
+            </if>
+            <if test="contractLimit != null and contractLimit != ''">
+                and contract_limit = #{contractLimit}
+            </if>
+            <if test="businessExpertise != null and businessExpertise != ''">
+                and business_expertise = #{businessExpertise}
+            </if>
+            <if test="recommendPerson != null and recommendPerson != ''">
+                and recommend_person = #{recommendPerson}
+            </if>
+            <if test="recommendReason != null and recommendReason != ''">
+                and recommend_reason = #{recommendReason}
+            </if>
+            <if test="managerEvaluation != null and managerEvaluation != ''">
+                and manager_evaluation = #{managerEvaluation}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="startCrtTime != null and startCrtTime != ''">
+                and crt_time &gt;= #{startCrtTime}
+            </if>
+            <if test="endCrtTime != null and endCrtTime != ''">
+                and crt_time &lt;= #{endCrtTime}
+            </if>
+            <if test="crtPerson != null and crtPerson != ''">
+                and crt_person = #{crtPerson}
+            </if>
+            <if test="startUpdTime != null and startUpdTime != ''">
+                and upd_time &gt;= #{startUpdTime}
+            </if>
+            <if test="endUpdTime != null and endUpdTime != ''">
+                and upd_time &lt;= #{endUpdTime}
+            </if>
+            <if test="updPerson != null and updPerson != ''">
+                and upd_person = #{updPerson}
+            </if>
+        </where>
+    </select>
+
+</mapper>

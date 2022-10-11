@@ -1,0 +1,62 @@
+server:
+  port: 8106
+  context-path: /person-manager
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jpa:
+      database: mysql
+      show-sql: true
+      generate-ddl: true
+  datasource:
+    url: jdbc:mysql://120.48.82.97:3306/person_manager_test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&jdbcCompliantTruncation=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: Ricky294!
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 5
+      min-idle: 10
+      max-active: 20
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        enabled: true
+        login-username: druid
+        login-password: druid
+        allow: ""
+  redis:
+    database: 3
+#    host: ${REDIS_HOST:120.48.82.97}
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+#    password: Hxh@123456
+    password: PassWord@!
+    pool:
+      max-active: 20
+# pagehelper分页插件配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  page-size-zero: false #当设置为true的时候，如果pageSize设置为0（或RowBounds的limit=0），就不执行分页，返回全部结果
+# Mapper4
+mapper:
+  mappers: com.ricky.manager.base.BaseMapper
+  not-empty: false
+  identity: MYSQL
+
+fdfs:
+  file_address: http://wl.sinovacbio.cn:8888/
+
+tms:
+  url: http://101.201.77.210/api/scm-api/v1/OrderImportCtrl/importOrder
+  app-key: 5a22a704-40db-44e1-b479-82d576556505
+  app-secret: c02ff66c7fdb4baf8fee3499990ae297
+  public-app-secret: b6a6bb2a-fbaa-11e9-9feb-0242c0a80004
